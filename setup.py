@@ -1,7 +1,5 @@
 import setuptools
 
-from bleurt_pytorch import __version__
-
 
 def load_long_description():
     with open("README.md", "r") as fh:
@@ -21,7 +19,7 @@ def load_requirements():
 
 setuptools.setup(
     name='bleurt-pytorch',
-    version=__version__,
+    version='0.0.1',
     description='PyTorch porting of BLEURT',
     long_description=load_long_description(),
     long_description_content_type="text/markdown",
