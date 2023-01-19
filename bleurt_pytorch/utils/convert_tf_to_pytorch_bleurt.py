@@ -5,14 +5,14 @@ from argparse import ArgumentParser, Namespace
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
-import tensorflow.compat.v1 as tf
-import torch
-from bleurt import score as bleurt_score
+import tensorflow.compat.v1 as tf  # noqa: E402
+import torch  # noqa: E402
+from bleurt import score as bleurt_score  # noqa: E402
 
-from bleurt_pytorch.bleurt.configuration_bleurt import BleurtConfig
-from bleurt_pytorch.bleurt.modeling_bleurt import BleurtForSequenceClassification
-from bleurt_pytorch.bleurt.tokenization_bleurt import BleurtTokenizerFast
-from bleurt_pytorch.bleurt.tokenization_bleurt_sp import BleurtSPTokenizer
+from bleurt_pytorch.bleurt.configuration_bleurt import BleurtConfig  # noqa: E402
+from bleurt_pytorch.bleurt.modeling_bleurt import BleurtForSequenceClassification  # noqa: E402
+from bleurt_pytorch.bleurt.tokenization_bleurt import BleurtTokenizerFast  # noqa: E402
+from bleurt_pytorch.bleurt.tokenization_bleurt_sp import BleurtSPTokenizer  # noqa: E402
 
 
 references = ["a bird chirps by the window", "this is the first phd of Luca"]

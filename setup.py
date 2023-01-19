@@ -20,7 +20,7 @@ def load_requirements():
 
 
 setuptools.setup(
-    name='bleurt_pytorch',
+    name='bleurt-pytorch',
     version=__version__,
     description='PyTorch porting of BLEURT',
     long_description=load_long_description(),
@@ -29,7 +29,8 @@ setuptools.setup(
     author='Luca Di Liello',
     author_email='luca.diliello@unitn.it',
     license='Apache License Version 2.0',
-    packages=load_requirements(),
+    packages=setuptools.find_packages(),
+    install_requires=load_requirements(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache License Version 2.0",
