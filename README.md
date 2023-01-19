@@ -1,6 +1,6 @@
 # bleurt-pytorch
 
-Use BLEURT models in Native PyTorch with [Transformers](https://huggingface.co/transformers).
+Use BLEURT models in native PyTorch with [Transformers](https://huggingface.co/transformers).
 
 ## Getting started
 
@@ -31,7 +31,7 @@ print(res)
 # [0.9604414105415344, 0.8080050349235535]
 ```
 
-You can find all BLUERT models adapted for PyTorch [here](https://huggingface.co/lucadiliello). The recommended model is `lucadiliello/BLEURT-20`, however this model is very large and may require too much resources. `BLEURT-20-D12` is smaller but work well enough for most comparisons.
+You can find all BLUERT models adapted for PyTorch [here](https://huggingface.co/lucadiliello). The recommended model is `lucadiliello/BLEURT-20`, however this model is very large and may require too much resources. `BLEURT-20-D12` is smaller but works well enough for most comparisons.
 
 
 ## Credits
