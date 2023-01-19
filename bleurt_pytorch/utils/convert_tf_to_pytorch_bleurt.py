@@ -5,13 +5,13 @@ from argparse import ArgumentParser, Namespace
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
+
 import tensorflow.compat.v1 as tf  # noqa: E402
 import torch  # noqa: E402
 from bleurt import score as bleurt_score  # noqa: E402
 
-from bleurt_pytorch.bleurt.configuration_bleurt import BleurtConfig  # noqa: E402
-from bleurt_pytorch.bleurt.modeling_bleurt import BleurtForSequenceClassification  # noqa: E402
-from bleurt_pytorch.bleurt.tokenization_bleurt import BleurtTokenizerFast  # noqa: E402
+from bleurt_pytorch import BleurtConfig, BleurtForSequenceClassification, BleurtTokenizer  # noqa: E402
+from bleurt_pytorch.bleurt.tokenization_bleurt_fast import BleurtTokenizerFast  # noqa: E402
 from bleurt_pytorch.bleurt.tokenization_bleurt_sp import BleurtSPTokenizer  # noqa: E402
 
 
@@ -71,7 +71,8 @@ def build_pytorch_state_dict(tensorflow_model_path: str):
 
 
 def main(args: Namespace):
-    
+
+    logger.info(f"Processing folder {args.input}...")
     logger.info("Loading original TF model...")
 
     # original TF BLUERT implementation scores
@@ -117,10 +118,7 @@ def main(args: Namespace):
     logging.info("Reload check...")
     config = BleurtConfig.from_pretrained(args.output)
     model = BleurtForSequenceClassification.from_pretrained(args.output)
-    try:
-        tok = BleurtSPTokenizer.from_pretrained(args.output)
-    except (OSError, TypeError):
-        tok = BleurtTokenizerFast.from_pretrained(args.output)
+    tok = BleurtTokenizer.from_pretrained(args.output)
 
     with torch.no_grad():
         res = model(**tok(references, candidates, padding='longest', return_tensors='pt')).logits.flatten().numpy()

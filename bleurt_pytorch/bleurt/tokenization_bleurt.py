@@ -15,13 +15,15 @@ class BleurtTokenizer(PreTrainedTokenizerBase):
 
     def __new__(cls, *args, **kwargs) -> Union[BleurtTokenizerFast, BleurtSPTokenizer]:
         try:
-            return BleurtSPTokenizer(*args, **kwargs)
-        except (OSError, TypeError):
             return BleurtTokenizerFast(*args, **kwargs)
+        except (OSError, TypeError):
+            return BleurtSPTokenizer(*args, **kwargs)
 
     @classmethod
-    def from_pretrained(cls, pretrained_model_name_or_path: Union[str, os.PathLike], *init_inputs, **kwargs):
+    def from_pretrained(
+        cls, pretrained_model_name_or_path: Union[str, os.PathLike], *init_inputs, **kwargs
+    ) -> Union[BleurtTokenizerFast, BleurtSPTokenizer]:
         try:
-            return BleurtSPTokenizer.from_pretrained(pretrained_model_name_or_path, *init_inputs, **kwargs)
-        except (OSError, TypeError):
             return BleurtTokenizerFast.from_pretrained(pretrained_model_name_or_path, *init_inputs, **kwargs)
+        except (OSError, TypeError):
+            return BleurtSPTokenizer.from_pretrained(pretrained_model_name_or_path, *init_inputs, **kwargs)

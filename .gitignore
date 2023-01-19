@@ -1,6 +1,7 @@
 # Editor and macOS stuff
 .DS_Store
 .vscode/
+bleurt_pytorch/utils/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
