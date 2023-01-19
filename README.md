@@ -16,16 +16,19 @@ Now load your favourite model with:
 import torch
 from bleurt_pytorch import BleurtConfig, BleurtForSequenceClassification, BleurtTokenizer
 
-config = BleurtConfig.from_pretrained('lucadiliello/BLEURT-20')
-model = BleurtForSequenceClassification.from_pretrained('lucadiliello/BLEURT-20')
-tokenizer = BleurtTokenizer.from_pretrained('lucadiliello/BLEURT-20')
+config = BleurtConfig.from_pretrained('lucadiliello/BLEURT-20-D12')
+model = BleurtForSequenceClassification.from_pretrained('lucadiliello/BLEURT-20-D12')
+tokenizer = BleurtTokenizer.from_pretrained('lucadiliello/BLEURT-20-D12')
 
 references = ["a bird chirps by the window", "this is a random sentence"]
 candidates = ["a bird chirps by the window", "this looks like a random sentence"]
 
 model.eval()
 with torch.no_grad():
-    res = model(**tok(references, candidates, padding='longest', return_tensors='pt')).logits.flatten().numpy()
+    inputs = tokenizer(references, candidates, padding='longest', return_tensors='pt')
+    res = model(**inputs).logits.flatten().tolist()
+print(res)
+# [0.9604414105415344, 0.8080050349235535]
 ```
 
-You can find all BLUERT models adapted for PyTorch [here](https://huggingface.co/lucadiliello).
+You can find all BLUERT models adapted for PyTorch [here](https://huggingface.co/lucadiliello). The recommended model is `lucadiliello/BLEURT-20`, however this model is very large and may require too much resources. `BLEURT-20-D12` is smaller but work well enough for most comparisons.
