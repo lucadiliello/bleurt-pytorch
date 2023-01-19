@@ -32,3 +32,10 @@ print(res)
 ```
 
 You can find all BLUERT models adapted for PyTorch [here](https://huggingface.co/lucadiliello). The recommended model is `lucadiliello/BLEURT-20`, however this model is very large and may require too much resources. `BLEURT-20-D12` is smaller but work well enough for most comparisons.
+
+
+## Credits
+
+- [Google original BLEURT](https://github.com/google-research/bleurt) implementation
+- [Transformers](https://huggingface.co/transformers) project
+- Users of this [issue](https://github.com/huggingface/datasets/issues/224), from which I took inspiration.
